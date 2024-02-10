@@ -2,12 +2,21 @@ package com.example.obstaclerace.UI;
 
 import android.content.Context;
 import android.view.SurfaceView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 public class GameView extends SurfaceView implements Runnable {
-
+    final int rows = 12;
+    final int cols = 3;
+    final int lives = 3;
 
     private boolean isPlaying;
     private Thread gameThread = null;
+    private MovingObject[][] board = new MovingObject[rows][cols];
+    private LinearLayoutCompat lives;
+    private RelativeLayout game;
 
     public GameView(Context context) {
         super(context);
@@ -39,5 +48,7 @@ public class GameView extends SurfaceView implements Runnable {
         }
     }
 
-    // More methods will go here (e.g., for handling touch events)
+    public void playerMoveLeft(){
+
+    }
 }

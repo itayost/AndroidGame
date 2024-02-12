@@ -8,18 +8,22 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
 public class GameView extends SurfaceView implements Runnable {
+    private final Object lock = new Object();
     final int rows = 12;
     final int cols = 3;
-    final int lives = 3;
 
     private boolean isPlaying;
     private Thread gameThread = null;
-    private MovingObject[][] board = new MovingObject[rows][cols];
-    private LinearLayoutCompat lives;
+    private LinearLayoutCompat livesShow;
     private RelativeLayout game;
 
-    public GameView(Context context) {
+    private int lives;
+    private int playerLocation;
+
+    public GameView(MainActivity context) {
         super(context);
+
+
     }
 
     @Override
@@ -48,7 +52,5 @@ public class GameView extends SurfaceView implements Runnable {
         }
     }
 
-    public void playerMoveLeft(){
 
-    }
 }

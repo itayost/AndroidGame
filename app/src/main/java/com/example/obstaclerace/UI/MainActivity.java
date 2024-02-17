@@ -8,6 +8,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void tryToHit(int col) {
         if(col == chicken_place){
+            vibrate();
             Game_IMG_hearts[hits].setVisibility(View.INVISIBLE);
             hits++;
             if(hits == LIVES){

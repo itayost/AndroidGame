@@ -1,37 +1,51 @@
 package com.example.obstaclerace.UI;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.obstaclerace.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final int ROWS = 5;
-    private static final int COLS = 3;
+    private static final int COLS = 5;
+    private static final int MAX_LIVES = 3;
 
-    private static final int LIVES = 3;
+    private int lives = MAX_LIVES;
+    private int chickenPlace;
+
+    private gameLogic game;
+    private Drawable egg;
+
+    private Drawable heart;
     private AppCompatImageButton Game_BTN_left, Game_BTN_right;
     private ImageView[] Game_IMG_player;
     private ImageView[][] Game_IMG_eggs = new ImageView[ROWS][COLS];
-    private ImageView[] Game_IMG_hearts = new ImageView[LIVES];
+    private ImageView[] Game_IMG_hearts = new ImageView[MAX_LIVES];
 
-    private int chicken_place = 1;
+    private AppCompatTextView Score_Board;
 
-    private int hits = 0;
+    private SensorManager sensorManager;
+    private Sensor sensor;
+    private boolean sensorMode = false, slowMode = false, fastMode = false;
+    public static final String SENSOR_MODE = "SENSOR_MODE", SLOW_MODE = "SLOW_MODE", FAST_MODE = "FAST_MODE";
 
-    public static final int DELAY = 1000;
+
+    public static int DELAY = 1500;
     public static final long milisec = 500;
 
     final Handler handler = new Handler();
@@ -40,6 +54,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            sensorMode = extras.getBoolean(SENSOR_MODE, false);
+            slowMode = extras.getBoolean(SLOW_MODE, false);
+            fastMode = extras.getBoolean(FAST_MODE, false);
+        }
+        if(slowMode){
+            DELAY = 1500;
+        }
+        else if(fastMode){
+            DELAY = 800;
+        }
         initGame();
     }
 
@@ -56,28 +83,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initGame(){
+        game = new  gameLogic(ROWS, COLS, MAX_LIVES);
+        chickenPlace = game.getChicken_place();
         findViews();
+        updateChicken();
         setButtonsListeners();
     }
 
     private void findViews() {
         Game_BTN_left = findViewById(R.id.game_BTN_left);
         Game_BTN_right = findViewById(R.id.game_BTN_right);
+        Score_Board = findViewById(R.id.main_LBL_score);
         findPlayer();
         findHearts();
         findEggs();
+        findDrawables();
+    }
+
+    private void findDrawables() {
+        egg = ResourcesCompat.getDrawable(getResources(), R.drawable.egg, null);
+        heart = ResourcesCompat.getDrawable(getResources(), R.drawable.heart, null);
     }
 
     private void findPlayer(){
         Game_IMG_player = new ImageView[]{
-                findViewById(R.id.game_IMG_PlayerLeft),
-                findViewById(R.id.game_IMG_PlayerCenter),
-                findViewById(R.id.game_IMG_PlayerRight)
+                findViewById(R.id.game_IMG_Player1),
+                findViewById(R.id.game_IMG_Player2),
+                findViewById(R.id.game_IMG_Player3),
+                findViewById(R.id.game_IMG_Player4),
+                findViewById(R.id.game_IMG_Player5)
         };
     }
 
     private void findHearts() {
-        for (int i = 0; i < LIVES; i++) {
+        for (int i = 0; i < MAX_LIVES; i++) {
             int heartId = getResources().getIdentifier("main_IMG_heart" + (i + 1), "id", getPackageName());
             ShapeableImageView heart = findViewById(heartId);
             Game_IMG_hearts[i] = heart;
@@ -96,18 +135,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setButtonsListeners(){
         Game_BTN_left.setOnClickListener(v ->{
-            if (chicken_place > 0){
-                Game_IMG_player[chicken_place].setVisibility(View.INVISIBLE);
-                chicken_place--;
-                Game_IMG_player[chicken_place].setVisibility(View.VISIBLE);
+            if (game.movePlayer(-1)){
+                updateChicken();
             }
         });
 
         Game_BTN_right.setOnClickListener(v ->{
-            if (chicken_place < COLS - 1){
-                Game_IMG_player[chicken_place].setVisibility(View.INVISIBLE);
-                chicken_place++;
-                Game_IMG_player[chicken_place].setVisibility(View.VISIBLE);
+            if (game.movePlayer(1)){
+                updateChicken();
             }
         });
     }
@@ -120,49 +155,65 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void continueGame() {
-        moveEggs();
-        addEgg();
+        game.nextMove();
+        updateBoard();
+        updateLives();
+        updateScore();
+        if(game.gameOver()){
+            gameOver();
+        }
     }
 
-    private void addEgg(){
-        int randomColumn = (int) (Math.random() * COLS);
-        Game_IMG_eggs[0][randomColumn].setVisibility(View.VISIBLE);
-    }
-
-    private void moveEggs(){
-        for (int i = 0; i < COLS; i ++){
-            if (Game_IMG_eggs[ROWS - 1][i].getVisibility() == View.VISIBLE){
-                Game_IMG_eggs[ROWS - 1][i].setVisibility(View.INVISIBLE);
-                tryToHit(i);
+    private void updateLives(){
+        if(this.lives != game.getLives()){
+            vibrate();
+            this.lives = game.getLives();
+            for (int i = 0; i < MAX_LIVES; i++){
+                if(i < this.lives){
+                    Game_IMG_hearts[i].setVisibility(View.VISIBLE);
+                }
+                else{
+                    Game_IMG_hearts[i].setVisibility(View.INVISIBLE);
+                }
             }
         }
-
-        for (int i = ROWS - 2; i >= 0; i--){
-            for (int j = 0; j < COLS; j ++){
-                if(Game_IMG_eggs[i][j].getVisibility() == View.VISIBLE){
+    }
+    private void updateBoard() {
+        for(int i = 0; i < ROWS; i ++){
+            for(int j = 0; j < COLS; j ++){
+                if(game.getBoard()[i][j] == 0){
                     Game_IMG_eggs[i][j].setVisibility(View.INVISIBLE);
-                    Game_IMG_eggs[i + 1][j].setVisibility((View.VISIBLE));
+                }
+                else{
+                    if(game.getBoard()[i][j] == 1){
+                        Game_IMG_eggs[i][j].setImageDrawable(heart);
+                    }
+                    else if(game.getBoard()[i][j] == -1){
+                        Game_IMG_eggs[i][j].setImageDrawable(egg);
+                    }
+                    Game_IMG_eggs[i][j].setVisibility(View.VISIBLE);
                 }
             }
         }
     }
 
-    private void tryToHit(int col) {
-        if(col == chicken_place){
-            vibrate();
-            Game_IMG_hearts[hits].setVisibility(View.INVISIBLE);
-            hits++;
-            if(hits == LIVES){
-                gameOver();
-            }
-        }
+    private void updateChicken() {
+        Game_IMG_player[chickenPlace].setVisibility(View.INVISIBLE);
+        chickenPlace = game.getChicken_place();
+        Game_IMG_player[chickenPlace].setVisibility(View.VISIBLE);
+    }
+
+    private void updateScore(){
+        Score_Board.setText("Score: " + game.getScore());
     }
 
     private void gameOver() {
-        for(int i = 0; i < LIVES; i++){
-            Game_IMG_hearts[i].setVisibility(View.VISIBLE);
-            hits = 0;
-        }
+        Intent gameOverIntent = new Intent(MainActivity.this, GameOverActivity.class);
+        gameOverIntent.putExtra("score", game.getScore());
+        startActivity(gameOverIntent);
+        this.finish();
+        stopTimer();
+        finish();
     }
 
     private void startTimer() {

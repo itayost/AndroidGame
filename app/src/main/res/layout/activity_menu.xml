@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.MenuActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_sensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:minHeight="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:text="@string/sensor_mode"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_fastbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:minHeight="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/menu_BTN_sensor"
+        android:layout_marginTop="24dp"
+        android:text="@string/fast_button_mode"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_slowbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:minHeight="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/menu_BTN_fastbutton"
+        android:layout_marginTop="24dp"
+        android:text="@string/slow_button_mode"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_highScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:minHeight="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/menu_BTN_slowbutton"
+        android:layout_marginTop="24dp"
+        android:text="@string/high_scores"
+        android:textSize="18sp" />
+</RelativeLayout>

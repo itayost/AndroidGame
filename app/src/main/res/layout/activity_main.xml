@@ -48,7 +48,7 @@
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginEnd="@dimen/margin_default"
         android:text="@string/_000"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -66,12 +66,12 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/game_BTN_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/leftarrow"
-                android:id="@+id/game_BTN_left"
-                android:background="@null"/>
+                android:background="@null"
+                android:src="@drawable/leftarrow" />
 
         </RelativeLayout>
 
@@ -81,13 +81,12 @@
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/game_BTN_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/rightarrow"
-                android:id="@+id/game_BTN_right"
                 android:background="@null"
-                />
+                android:src="@drawable/rightarrow" />
 
         </RelativeLayout>
 
@@ -110,172 +109,144 @@
             android:layout_marginTop="100dp"
             android:layout_weight="0.5"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="5">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
                 android:visibility="invisible"
-
-                />
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_weight="0.5"
-            android:orientation="horizontal"
-            android:weightSum="3">
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
                 android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+        </LinearLayout>
 
-                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="5">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_centerInParent="true"
-            android:layout_weight="0.5"
-            android:orientation="horizontal"
-            android:weightSum="3">
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg7"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
                 android:visibility="invisible"
-
-                />
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_centerInParent="true"
-            android:layout_weight="0.5"
-            android:orientation="horizontal"
-            android:weightSum="3">
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="5">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg11"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
                 android:visibility="invisible"
-
-                />
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg12"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_centerInParent="true"
-            android:layout_weight="0.5"
-            android:orientation="horizontal"
-            android:weightSum="3">
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg13"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg14"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
                 android:visibility="invisible"
-
-                />
+                app:srcCompat="@drawable/egg" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/game_IMG_egg15"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/egg"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
         </LinearLayout>
 
         <LinearLayout
@@ -284,43 +255,149 @@
             android:layout_centerInParent="true"
             android:layout_weight="0.5"
             android:orientation="horizontal"
-            android:weightSum="3"
-            android:visibility="visible"
-            >
+            android:weightSum="5">
+
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg16"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/chicken"
                 android:layout_weight="1"
                 android:visibility="invisible"
-                android:id="@+id/game_IMG_PlayerLeft"
-                >
+                app:srcCompat="@drawable/egg" />
 
-            </com.google.android.material.imageview.ShapeableImageView>
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg17"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/chicken"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg18"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg19"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg20"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg21"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg22"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg23"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg24"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_egg25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/egg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            android:visibility="visible">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_Player1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/chicken" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_Player2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/chicken" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_Player3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:visibility="visible"
-                android:id="@+id/game_IMG_PlayerCenter"
-                >
+                app:srcCompat="@drawable/chicken" />
 
-            </com.google.android.material.imageview.ShapeableImageView>
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_Player4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/chicken"
                 android:layout_weight="1"
                 android:visibility="invisible"
-                android:id="@+id/game_IMG_PlayerRight"
-                />
+                app:srcCompat="@drawable/chicken" />
 
-
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/game_IMG_Player5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/chicken" />
         </LinearLayout>
 
 
     </LinearLayout>
 
 </RelativeLayout>
-

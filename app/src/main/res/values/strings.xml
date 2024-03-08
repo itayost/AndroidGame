@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Obstacle race</string>
     <string name="_000">000</string>
+    <string name="fast_button_mode">Fast Button Mode</string>
+    <string name="slow_button_mode">Slow Button Mode</string>
+    <string name="sensor_mode">Sensor Mode</string>
+    <string name="high_scores">High Scores</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="score_0">Score: 0</string>
+    <string name="save_score">Save Score</string>
 </resources>

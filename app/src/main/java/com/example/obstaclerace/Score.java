@@ -1,4 +1,4 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 public class Score {
     private String name;

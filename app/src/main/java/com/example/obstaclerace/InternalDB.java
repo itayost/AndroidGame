@@ -1,4 +1,4 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 import java.util.ArrayList;
 

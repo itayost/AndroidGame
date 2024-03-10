@@ -1,4 +1,4 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 import android.view.View;
 

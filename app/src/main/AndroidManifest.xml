@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".UI.App"
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,10 +16,13 @@
         android:theme="@style/Theme.ObstacleRace"
         tools:targetApi="31">
         <activity
-            android:name=".UI.GameOverActivity"
+            android:name=".TopScoresActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.MenuActivity"
+            android:name=".GameOverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

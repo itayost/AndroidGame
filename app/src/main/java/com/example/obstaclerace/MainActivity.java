@@ -1,4 +1,4 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.obstaclerace.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
 public class MainActivity extends AppCompatActivity {

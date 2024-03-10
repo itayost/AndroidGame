@@ -1,11 +1,10 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.obstaclerace.R;
 import com.google.android.material.button.MaterialButton;
 
 public class MenuActivity extends AppCompatActivity {
@@ -45,8 +44,8 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(gameIntent);
     }
     public void Scores() {
-        //Intent ScoreIntent = new Intent(this, Top10Activity.class);
-        //startActivity(ScoreIntent);
+        Intent ScoreIntent = new Intent(this, TopScoresActivity.class);
+        startActivity(ScoreIntent);
     }
 
 }

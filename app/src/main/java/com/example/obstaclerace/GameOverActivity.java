@@ -1,14 +1,12 @@
-package com.example.obstaclerace.UI;
+package com.example.obstaclerace;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.obstaclerace.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 

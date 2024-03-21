@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class TopScoresFragment extends Fragment {
 
+    private AppCompatActivity activity;
     private ClickListener listener;
     private MaterialButton[] score_buttons;
     private ArrayList<Score> scores;
@@ -34,22 +36,25 @@ public class TopScoresFragment extends Fragment {
         return view;
     }
 
+    public void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
+    }
+
+    public void setListener(ClickListener listener) {this.listener = listener;}
+
     private void addPlayer() {
-        String js = MSPV3.getMe().getString("MY_DB", "");
-        InternalDB DB= new Gson().fromJson(js, InternalDB.class);
+        String js = MSPV3.getMe().getString("InternalDB", "");
+        InternalDB DB = new Gson().fromJson(js, InternalDB.class);
         scores = DB.getRecords();
-        if(scores.size()<10){
-            for (int j = 0; j < scores.size(); j++) {
-                score_buttons[j].setText("Name: "+scores.get(j).getName()+ " Score: "+scores.get(j).getScore());
+        for (int j = 0; j < 10; j++) {
+            if (j < scores.size()) {
                 Score temp = scores.get(j);
-                int finalJ = j;
-                score_buttons[j].setOnClickListener(v -> listener.onScoreClick(finalJ));
+                score_buttons[j].setText(temp.getName());
+                score_buttons[j].setOnClickListener(v -> listener.onScoreClick(temp.getLat(), temp.getLon()));
             }
-        }else{
-            for (int i = 0; i < 10; i++) {
-                top[i].setText("Name: "+scores.get(i).getName()+ " Score: "+scores.get(i).getScore());
-                Score temp = scores.get(i);
-                top[i].setOnClickListener(v -> callBackList.zoom(temp.getLon(),temp.getLat()));
+            else
+            {
+                score_buttons[j].setVisibility(View.INVISIBLE);
             }
         }
     }

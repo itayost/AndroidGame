@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:weightSum="20">
 
         <TextView
             android:id="@+id/panel_LBL_score"
@@ -20,8 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
+            android:layout_weight="3"
             android:text="@string/top_10"
-            android:textSize="50sp" />
+            android:textSize="30sp" />
 
 
         <FrameLayout
@@ -29,18 +31,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
-            android:layout_weight="1" />
+            android:layout_weight="8" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:layout_weight="1"
+            android:textSize="15sp" />
 
 
         <FrameLayout
-            android:id="@+id/frameScoreDetails"
+            android:id="@+id/frameMap"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="8">
 
         </FrameLayout>
 
